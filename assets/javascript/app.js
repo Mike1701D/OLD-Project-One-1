@@ -1,12 +1,13 @@
 // Initialize Firebase
+
 var config = {
-  apiKey: "AIzaSyD3jPGBWY41ik3SqvFOJ7e9IdMHponP6N8",
-  authDomain: "train-353c2.firebaseapp.com",
-  databaseURL: "https://train-353c2.firebaseio.com",
-  projectId: "train-353c2",
-  storageBucket: "train-353c2.appspot.com",
-  messagingSenderId: "319806030524"
-};
+    apiKey: "AIzaSyAuYrWqniGIviMM1LsufSjFkuh6PSBGUh0",
+    authDomain: "movies-d6628.firebaseapp.com",
+    databaseURL: "https://movies-d6628.firebaseio.com",
+    projectId: "movies-d6628",
+    Bucket: "movies-d6628.appspot.com",
+    messagingSenderId: "959648926177"
+  };
 
 firebase.initializeApp(config);
 
@@ -14,65 +15,86 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 // Database Directory
-var trainRef = database.ref("/Train");
+var movieRef = database.ref("/movies");
 
 // Create Variables
 var name = null;
-var destination = null;
-var time = null;
-var frequency = null;
-var getKey= null;
 
-// Listen for Button Click
-$("#user-add-train").on("click", function() {
+// Listen for First Button Click
+$("#user-add-movie").on("click", function() {
   event.preventDefault();
-  var nameOfTrain = $("#user-input-name").val().trim();
-  var Destination = $("#user-input-dest").val().trim();
-  var Time = moment($("#user-input-first").val().trim(), "HH:mm").format();
-  var Freq = parseInt($("#user-input-freq").val().trim());
+  var nameOfMovie = $("#user-input-name").val().trim();
 
-  var newTrn = {
-    name: nameOfTrain,
-    destination: Destination,
-    time: Time,
-    frequency: Freq
+  if (nameOfMovie === "") {
+    return;
+  } else {
+  	console.log(nameOfMovie);
+    var newMovie = {
+    name: nameOfMovie
+    }
+
+    // Save to Firebase
+    database.ref("/movies").push(newMovie);
+
+    // Make Input Boxes Blank After Firebase Push
+    $("#user-input-name").val(null);
   }
-
-  // Save to Firebase
-  database.ref("/Train").push(newTrn);
-
-  // Make Input Boxes Blank After Firebase Push
-  $("#user-input-name").val(null);
-  $("#user-input-dest").val(null);
-  $("#user-input-first").val(null);
-  $("#user-input-freq").val(null);
-
 });
 
-// Add New Train to Firebase
-database.ref("/Train").on("child_added", function( x, y) {
+// Add New Movie to Firebase
+database.ref("/movies").on("child_added", function( x, y) {
 
   // Store everything into a variable.
-  var nameOfTrain = x.val().name;
-  var Destination = x.val().destination;
-  var Time = x.val().time;
-  var Freq = x.val().frequency;
-  var timeConvert = moment(Time, "HH:mm").subtract(1, "years");
-  var currentTime = moment();
-  var diffTime = moment().diff(moment(timeConvert), "minutes");
-  var Remainder = diffTime % Freq;
-  var minutesUntil = Freq - Remainder;
-  var nextTrain = moment().add(minutesUntil, "minutes");
+  var nameOfMovie = x.val().name;
 
-  // Add New Train to Table
-  $("#sched-for-trains").append("<tr><td>" + nameOfTrain + "</td><td>" + Destination + "</td><td>" + Freq + "</td><td>" + moment(nextTrain).format("HH:mm") + "</td><td>" + minutesUntil + " </td><td>" + "" + "</td><td class='col-xs-1'>" + "<input type='submit' value='remove train' class='remove-train' btn btn-primary btn-sm'>" + "</tr>");
+  // Add New Movie to Table
+  $("#my-movie-list").append("<tr><td>" + nameOfMovie + "</td><td>" + "</td><td class='col-xs-1'>" + "<input type='submit' value='X' class='remove-movie' btn btn-primary btn-sm'>" + "<td><br><br></td>" + "</tr>");
 
 
-$("body").on("click", ".remove-train", function(){
+$("body").on("click", ".remove-movie", function(){
      $(this).closest ('tr').remove();
-     //getKey = $(this).attr('id');
-     //var trainRefChild = trainRef.getKey;
-     trainRef.remove();
+     movieRef.remove();
 });
+
+
+
+// Listen for Second Button Click ************************API BY BRIAN YACK HERE
+$("#user-search-plot").on("click", function() {
+  event.preventDefault();
+  var nameOfMoviePlot = $("#user-input-name-2").val().trim();
+
+  if (nameOfMoviePlot === "") {
+    return;
+  } else {
+  	console.log(nameOfMoviePlot);
+    //window.open("https://www.w3schools.com");
+    // Open New Tab
+    // Pull Summary from OMDB
+    // Display Movie Summary in New Tab
+	$("#user-input-name-2").val(null);
+  }
+});
+
+
+
+// Listen for Third Button Click ************************API BY BRIAN YACK HERE
+$("#user-search-clip").on("click", function() {
+  event.preventDefault();
+  var nameOfMovieClip = $("#user-input-name-3").val().trim();
+
+  if (nameOfMovieClip === "") {
+    return;
+  } else {
+  	console.log(nameOfMovieClip);
+
+    //window.open("https://www.w3schools.com");
+    // Open New Tab
+    // Pull Clip from YouTube
+    // Play Clip in New Tab
+	$("#user-input-name-3").val(null);
+  }
+});
+
+
 
 });

@@ -1,15 +1,30 @@
 body {
 	background-image: url("../images/background.jpg");
+	background-attachment:  fixed;
+	background-position: center;
 	background-size: cover;
+	margin: 0;
+	min-wdith: 250px;
 }
 
-.jumbotron {
+h1 {
 	margin-top: 25px;
-	margin-left:  55px;
-	margin-right: 55px;
-	background-color:  brown;
 	color:  white;
-	text-align:  center;
-	border-radius: 10px;
+	text-align: center;
 }
 
+h2 {
+	color: white;
+	text-align: center;
+}
+
+.panel-title {
+	text-align: center;
+	color: white;
+	font-weight: bolder;
+}
+
+.remove-movie {
+	color: black;
+	background-color: red;
+}

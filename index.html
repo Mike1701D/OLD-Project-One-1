@@ -4,45 +4,86 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="utf-8">
+    <title>Movie List Creator</title>
     
-    <title>Sheldon Cooper Loves Trains</title>
-    
+	<!  Add jQuery library link>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <! Add reset link>
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+
+    <! Add bootstrap link>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-	<link rel="stylesheet" href="assets/css/style.css">
-    
-    <!-- Firebase Reference -->
+
+    <! Add stylesheet link>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+	<! Add Firebase Reference>
     <script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
-    
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery.js"></script>
 
     <!-- Link to Moment.js should go here -->
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+
 </head>
 
 <body>
-	<div class="jumbotron">
-        <h1>Sheldon Cooper's Train Scheduler</h1>
-        <h2>Sheldon Cooper Loves Trains</h2>
-    </div>
 
-    <br>
+	<div id="player">
+		<audio autoplay hidden>
+			<source src="assets/thx-soundtest.wav" type="audio/wav">
+		</audio>
+	</div>
+	
+	<h1>Movie List Maker</h1>
+	<h2>Create a Movie List -- See Clips -- Read Plot Summaries</h2>
+	<br>
 
-    <div class="container">
-    	<div class="row">
-    		<div class="col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
-    			<div class="panel panel-primary">
-    				<div class="panel-heading">
-    					<h3 class="panel-title">Current Train Schedule</h3>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h3 class="panel-title">Search Movies</h3>
 					</div>
 					<div class="panel-body">
-						<table id="sched-for-trains">
+						<form role="form">
+							<div>
+								<br>
+								<label for="text">Add Movies to Your Movie List</label>
+								<input type="text" class="form-control" id="user-input-name">
+								<br>
+								<button type="submit" class="btn btn-primary" id="user-add-movie">Search</button>
+								<br><br><br>
+
+								<label for="text">Search Movie Plots Here</label>
+								<input type="text" class="form-control" id="user-input-name-2">
+								<br>
+								<button type="submit" class="btn btn-primary" id="user-search-plot">Search</button>
+								<br><br><br>
+
+								<label for="text">Search Movie Clips Here</label>
+								<input type="text" class="form-control" id="user-input-name-3">
+								<br>
+								<button type="submit" class="btn btn-primary" id="user-search-clip">Search</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h3 class="panel-title">My Movie List</h3>
+					</div>
+					<div class="panel-body">
+						<table id="my-movie-list">
 							<tr>
-								<th class="col-xs-3">Train Name</th>
-								<th class="col-xs-2">Destination</th>
-								<th class="col-xs-2">Frequency (min)</th>
-								<th class="col-xs-2">Next Arrival</th>
-								<th class="col-xs-2">Minutes Away</th>
+								<th class="col-xs-12"></th>
 							</tr>
 						</table>
 					</div>
@@ -50,44 +91,6 @@
 			</div>
 		</div>
 	</div>
-
-	<br><br>
-
-	<div class="container">
-		<div class="row">
-			<div class="col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
-				<div class="panel panel-primary">
-					<div class="panel-heading">
-						<h3 class="panel-title">Add Train</h3>
-					</div>
-					<div class="panel-body">
-						<form role="form">
-							<div>
-								<label for="text">Train Name</label>
-								<input type="text" class="form-control" id="user-input-name">
-							</div>
-							<div>
-								<label for="text">Destination</label>
-								<input type="text" class="form-control" id="user-input-dest">
-							</div>
-							<div>
-								<label for="text">First Train Time (HH:mm - military time)</label>
-								<input type="text" class="form-control" id="user-input-first">
-							</div>
-							<div>
-								<label for="comment">Frequency (min)</label>
-								<input type="text" class="form-control" id="user-input-freq">
-							</div>
-							<br>
-							<button type="submit" class="btn btn-primary" id="user-add-train">Submit</button>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	<br>
-	</div>
-
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script type="text/javascript" src="assets/javascript/app.js"></script>
