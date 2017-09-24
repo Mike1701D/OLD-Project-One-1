@@ -61,7 +61,7 @@ $("body").on("click", ".remove-movie", function(){
 // Listen for Second Button Click ************************API BY BRIAN YACK HERE
 $("#user-search-plot").on("click", function() {
   event.preventDefault();
-  var nameOfMoviePlot = $("#user-input-name-2").val().trim();
+  var nameOfMoviePlot = $("#user-input-name").val().trim();
 
   if (nameOfMoviePlot === "") {
     return;
@@ -71,7 +71,7 @@ $("#user-search-plot").on("click", function() {
     // Open New Tab
     // Pull Summary from OMDB
     // Display Movie Summary in New Tab
-	$("#user-input-name-2").val(null);
+	$("#user-input-name").val(null);
   }
 });
 
@@ -80,7 +80,7 @@ $("#user-search-plot").on("click", function() {
 // Listen for Third Button Click ************************API BY BRIAN YACK HERE
 $("#user-search-clip").on("click", function() {
   event.preventDefault();
-  var nameOfMovieClip = $("#user-input-name-3").val().trim();
+  var nameOfMovieClip = $("#user-input-name").val().trim();
 
   if (nameOfMovieClip === "") {
     return;
@@ -91,10 +91,14 @@ $("#user-search-clip").on("click", function() {
     // Open New Tab
     // Pull Clip from YouTube
     // Play Clip in New Tab
-	$("#user-input-name-3").val(null);
+	$("#user-input-name").val(null);
   }
 });
 
+$("#user-clear").on("click", function() {
+  event.preventDefault();
+  $("#user-input-name").val(null);
 
+});
 
 });
