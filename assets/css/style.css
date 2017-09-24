@@ -24,11 +24,16 @@ h2 {
 	font-weight: bolder;
 }
 
+.panel-primary {
+	opacity: .72;
+}
+
+.panel-body {
+	background-color: white;
+	font-weight:  bolder;
+}
+
 .remove-movie {
 	color: black;
 	background-color: red;
-}
-
-.user-clear {
-	color:  red;
 }
