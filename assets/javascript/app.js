@@ -58,7 +58,7 @@ $("body").on("click", ".remove-movie", function(){
 
 
 
-// Listen for Second Button Click ************************API BY BRIAN YACK HERE
+// Listen for Second Button Click ************************API BY SHARAD HERE
 $("#user-search-plot").on("click", function() {
   event.preventDefault();
   var nameOfMoviePlot = $("#user-input-name").val().trim();
@@ -77,7 +77,7 @@ $("#user-search-plot").on("click", function() {
 
 
 
-// Listen for Third Button Click ************************API BY BRIAN YACK HERE
+// Listen for Third Button Click ************************API BY BRIAN HERE
 $("#user-search-clip").on("click", function() {
   event.preventDefault();
   var nameOfMovieClip = $("#user-input-name").val().trim();
